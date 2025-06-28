@@ -1,4 +1,4 @@
-# 💻 CLI Interactive Portfolio
+# 💻 Simulated CLI Portfolio
 
 Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrutadores e visitantes podem "brincar" com comandos para descobrir mais sobre mim, meus projetos, habilidades, currículo e formas de contato.
 

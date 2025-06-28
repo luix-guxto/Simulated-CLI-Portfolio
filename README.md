@@ -16,31 +16,48 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
 ## 📂 Estrutura do Projeto
 
 ```
-Simulated-CLI-Portfolio
-├── README.md
-├── docs
-│   ├── 1 - Lista de Regas de Negócio.pdf
-│   ├── 2 - Lista de Requisitos Não Funcionais.pdf
-│   ├── 3 - Lista de Requisitos Funcionais.pdf
-│   └── Plano de Projeto.pdf
-├── backend
-├── frontend
-└── .gitignore
+📦Portifolio CLI Simulado
+ ┣ 📂backend
+ ┣ 📂docs
+ ┃ ┣ 📜1 - Lista de Regras de Negócio.pdf
+ ┃ ┣ 📜2 - Lista de Requisitos Não Funcionais.pdf
+ ┃ ┣ 📜3 - Lista de Requisitos Funcionais.pdf
+ ┃ ┗ 📜Plano de Projeto.pdf
+ ┣ 📂frontend
+ ┃ ┣ 📂css
+ ┃ ┃ ┗ 📜style.css
+ ┃ ┣ 📂data
+ ┃ ┃ ┣ 📂translations
+ ┃ ┃ ┃ ┣ 📜en.json
+ ┃ ┃ ┃ ┗ 📜pt.json
+ ┃ ┃ ┗ 📜favicon.ico
+ ┃ ┣ 📂js
+ ┃ ┃ ┣ 📜api.js
+ ┃ ┃ ┣ 📜buttons.js
+ ┃ ┃ ┣ 📜cli.js
+ ┃ ┃ ┣ 📜lang.js
+ ┃ ┃ ┗ 📜main.js
+ ┃ ┗ 📜index.html
+ ┣ 📜.gitignore
+ ┗ 📜README.md
 ```
-
 
 ## 📦 Tecnologias Utilizadas
 
 - Java + Spring Boot (API REST)
+- Python (Local Server)
 - HTML + JavaScript (Front-end estilo terminal)
 - JSON para internacionalização (i18n)
-- Banco de dados (PostgreSQL)
+- Banco de dados (MySQL)
 - Git + GitHub
 
 ## 📥 Executar localmente
 
 ### Frontend (HTML + JS) 
-> Basta abrir o arquivo index.html no navegador
+```bash
+cd %/frontend
+python -m http.server 8000
+```
 
 ### Backend (Spring Boot)
 ```bash

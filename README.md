@@ -18,6 +18,46 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
 ```
 📦Portifolio CLI Simulado
  ┣ 📂backend
+ ┃ ┣ 📂.mvn
+ ┃ ┃ ┗ 📂wrapper
+ ┃ ┃ ┃ ┗ 📜maven-wrapper.properties
+ ┃ ┣ 📂src
+ ┃ ┃ ┣ 📂main
+ ┃ ┃ ┃ ┣ 📂java
+ ┃ ┃ ┃ ┃ ┗ 📂com
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂luixguxto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂br
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplication.java
+ ┃ ┃ ┃ ┗ 📂resources
+ ┃ ┃ ┃ ┃ ┣ 📂static
+ ┃ ┃ ┃ ┃ ┣ 📂templates
+ ┃ ┃ ┃ ┃ ┗ 📜application.properties
+ ┃ ┃ ┗ 📂test
+ ┃ ┃ ┃ ┗ 📂java
+ ┃ ┃ ┃ ┃ ┗ 📂com
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂luixguxto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂br
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplicationTests.java
+ ┃ ┣ 📂target
+ ┃ ┃ ┣ 📂classes
+ ┃ ┃ ┃ ┣ 📂com
+ ┃ ┃ ┃ ┃ ┗ 📂luixguxto
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂br
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplication.class
+ ┃ ┃ ┃ ┗ 📜application.properties
+ ┃ ┃ ┣ 📂generated-sources
+ ┃ ┃ ┃ ┗ 📂annotations
+ ┃ ┃ ┗ 📂test-classes
+ ┃ ┃ ┃ ┗ 📂com
+ ┃ ┃ ┃ ┃ ┗ 📂luixguxto
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂br
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplicationTests.class
+ ┃ ┣ 📜.gitattributes
+ ┃ ┣ 📜.gitignore
+ ┃ ┣ 📜HELP.md
+ ┃ ┣ 📜mvnw
+ ┃ ┣ 📜mvnw.cmd
+ ┃ ┗ 📜pom.xml
  ┣ 📂docs
  ┃ ┣ 📜1 - Lista de Regras de Negócio.pdf
  ┃ ┣ 📜2 - Lista de Requisitos Não Funcionais.pdf
@@ -39,10 +79,11 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
  ┃ ┃ ┗ 📜main.js
  ┃ ┗ 📜index.html
  ┣ 📜.gitignore
+ ┣ 📜CLI_PORTFOLIO_DDL.sql
  ┗ 📜README.md
 ```
 
-## Estrutura do banco
+## 🗃️ Estrutura do Banco de Dados
 ```mermaid
 erDiagram
     CATEGORY {
@@ -151,22 +192,26 @@ erDiagram
 ## 📦 Tecnologias Utilizadas
 
 - Java + Spring Boot (API REST)
-- Python (Local Server)
-- HTML + JavaScript (Front-end estilo terminal)
+- Python ou Node.js (servidor local para o front-end)
+- HTML, CSS, JavaScript e Bootstrap (front-end com estilo de terminal)
 - JSON para internacionalização (i18n)
-- Banco de dados (MySQL)
+- MySQL (banco de dados)
 - Git + GitHub
 
 ## 📥 Executar localmente
 
 ### Frontend (HTML + JS) 
 ```bash
-cd %/frontend
+cd frontend
+
 python -m http.server 8000
+# ou usando live-server 
+npx live-server
 ```
 
 ### Backend (Spring Boot)
 ```bash
+cd backend
 ./mvnw spring-boot:run
 # ou
 mvn spring-boot:run

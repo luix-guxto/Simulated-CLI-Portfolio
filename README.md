@@ -42,6 +42,112 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
  ┗ 📜README.md
 ```
 
+## Estrutura do banco
+
+erDiagram
+    CATEGORY {
+        int id PK
+        varchar skill
+    }
+    PROJECT {
+        int id PK
+        varchar name_pt
+        varchar name_en
+        text description_pt
+        text description_en
+        varchar url
+    }
+    PROJECT_CATEGORY {
+        int project_id PK, FK
+        int category_id PK, FK
+    }
+    CERTIFICATE {
+        int id PK
+        varchar name_pt
+        varchar name_en
+        varchar organization
+        date issue_date
+        date expiration_date
+        text description_pt
+        text description_en
+        varchar code
+        varchar url
+    }
+    CERTIFICATE_CATEGORY {
+        int certificate_id PK, FK
+        int category_id PK, FK
+    }
+    ACADEMIC {
+        int id PK
+        varchar course_pt
+        varchar course_en
+        varchar organization
+        date start_date
+        date end_date
+        enum status
+    }
+    WORK_EXPERIENCE {
+        int id PK
+        varchar company
+        varchar company_url
+        date start_date
+        date end_date
+        varchar role_pt
+        varchar role_en
+        varchar location
+        boolean is_current
+        text description_pt
+        text description_en
+    }
+    WORK_EXPERIENCE_CATEGORY {
+        int work_experience_id PK, FK
+        int category_id PK, FK
+    }
+    LANGUAGE {
+        int id PK
+        varchar name_pt
+        varchar name_en
+        enum level_reading
+        enum level_writing
+        enum level_speaking
+    }
+    KNOWLEDGE {
+        int id PK
+        varchar name_pt
+        varchar name_en
+        enum level
+        varchar url
+    }
+    KNOWLEDGE_CATEGORY {
+        int knowledge_id PK, FK
+        int category_id PK, FK
+    }
+    PROFILE {
+        int id PK
+        varchar name
+        varchar title_pt
+        varchar title_en
+        text bio_pt
+        text bio_en
+        varchar email
+        varchar phone
+        varchar location
+        varchar linkedin
+        varchar github
+        varchar cv_pt_url
+        varchar cv_en_url
+    }
+
+    CATEGORY ||--o{ PROJECT_CATEGORY : has
+    PROJECT ||--o{ PROJECT_CATEGORY : has
+    CATEGORY ||--o{ CERTIFICATE_CATEGORY : has
+    CERTIFICATE ||--o{ CERTIFICATE_CATEGORY : has
+    CATEGORY ||--o{ WORK_EXPERIENCE_CATEGORY : has
+    WORK_EXPERIENCE ||--o{ WORK_EXPERIENCE_CATEGORY : has
+    CATEGORY ||--o{ KNOWLEDGE_CATEGORY : has
+    KNOWLEDGE ||--o{ KNOWLEDGE_CATEGORY : has
+
+
 ## 📦 Tecnologias Utilizadas
 
 - Java + Spring Boot (API REST)

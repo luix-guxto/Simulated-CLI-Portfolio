@@ -43,7 +43,7 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
 ```
 
 ## Estrutura do banco
-
+```mermaid
 erDiagram
     CATEGORY {
         int id PK
@@ -146,7 +146,7 @@ erDiagram
     WORK_EXPERIENCE ||--o{ WORK_EXPERIENCE_CATEGORY : has
     CATEGORY ||--o{ KNOWLEDGE_CATEGORY : has
     KNOWLEDGE ||--o{ KNOWLEDGE_CATEGORY : has
-
+```
 
 ## 📦 Tecnologias Utilizadas
 

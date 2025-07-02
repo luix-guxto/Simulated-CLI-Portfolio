@@ -13,6 +13,13 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
 - Banco de dados com projetos e certificados.
 - Layout responsivo e acessível.
 
+## Requisitos
+
+- Java JDK 21
+- Python 3
+- Maven
+- MySql
+
 ## 📂 Estrutura do Projeto
 
 ```
@@ -27,10 +34,24 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
  ┃ ┃ ┃ ┃ ┗ 📂com
  ┃ ┃ ┃ ┃ ┃ ┗ 📂luixguxto
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂br
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜CorsConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📜CommandRequest.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜PortifolioController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂model
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Profile.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂lang
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProfileLang.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProfileRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜ProfileService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂util
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜Response.java
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplication.java
  ┃ ┃ ┃ ┗ 📂resources
- ┃ ┃ ┃ ┃ ┣ 📂static
- ┃ ┃ ┃ ┃ ┣ 📂templates
  ┃ ┃ ┃ ┃ ┗ 📜application.properties
  ┃ ┃ ┗ 📂test
  ┃ ┃ ┃ ┗ 📂java
@@ -38,20 +59,6 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
  ┃ ┃ ┃ ┃ ┃ ┗ 📂luixguxto
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📂br
  ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplicationTests.java
- ┃ ┣ 📂target
- ┃ ┃ ┣ 📂classes
- ┃ ┃ ┃ ┣ 📂com
- ┃ ┃ ┃ ┃ ┗ 📂luixguxto
- ┃ ┃ ┃ ┃ ┃ ┗ 📂br
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplication.class
- ┃ ┃ ┃ ┗ 📜application.properties
- ┃ ┃ ┣ 📂generated-sources
- ┃ ┃ ┃ ┗ 📂annotations
- ┃ ┃ ┗ 📂test-classes
- ┃ ┃ ┃ ┗ 📂com
- ┃ ┃ ┃ ┃ ┗ 📂luixguxto
- ┃ ┃ ┃ ┃ ┃ ┗ 📂br
- ┃ ┃ ┃ ┃ ┃ ┃ ┗ 📜SimulatedCliApiApplicationTests.class
  ┃ ┣ 📜.gitattributes
  ┃ ┣ 📜.gitignore
  ┃ ┣ 📜HELP.md
@@ -75,11 +82,11 @@ Este projeto é um portfólio interativo em forma de terminal (CLI), onde recrut
  ┃ ┃ ┣ 📜api.js
  ┃ ┃ ┣ 📜buttons.js
  ┃ ┃ ┣ 📜cli.js
- ┃ ┃ ┣ 📜lang.js
  ┃ ┃ ┗ 📜main.js
  ┃ ┗ 📜index.html
  ┣ 📜.gitignore
  ┣ 📜CLI_PORTFOLIO_DDL.sql
+ ┣ 📜INSERTS_SELECTS_CLI_PORTIFOLIO.sql
  ┗ 📜README.md
 ```
 

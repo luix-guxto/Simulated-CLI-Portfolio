@@ -1,5 +1,6 @@
 import { sendCommandToApi } from './api.js';
 import { setLanguage } from './main.js';
+import { lang } from './main.js';
 let firstCommandExecuted = false;
 export function initTerminal() {
   const input = document.getElementById('input');
@@ -30,8 +31,12 @@ export function initTerminal() {
       if (cmd === 'lang') {
         try{
           setLanguage(args[0])
+          let msg = lang == 'pt' ? "Linguagem alterada para Português" : "Language changed to English";
+          appendOutput(msg)
+          return
         } catch (err) {
-          appendOutput("[Error] No such language, type help --lang to see all languages")
+          let msg = lang == 'pt' ? "Want to change to English? type `lang en`" : "Deseja alterar para Português? digite `lang pt`";
+          appendOutput(msg)
           return
         }
       }
@@ -40,9 +45,10 @@ export function initTerminal() {
       input.value = '';
       try {
         const response = await sendCommandToApi(cmdLine);
-        appendOutput(response);
+        appendOutput(response.message);
       } catch (err) {
-        appendOutput('Erro: não foi possível conectar ao servidor.');
+        let msg = lang == 'pt' ? "[Erro]: não foi possível conectar ao servidor." : "[Error]: Could not connect to the server.";
+        appendOutput(msg);
       }finally{
         input.disabled = false;
         input.focus();

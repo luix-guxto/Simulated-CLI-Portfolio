@@ -38,13 +38,13 @@ body {
     font-family: monospace;
     color: #0f0;
     background-color: #000;
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
 }
 
 #output {
     white-space: pre-wrap;
-    min-height: 300px;
+    min-height: 500px;
 }
 
 #input-line {
@@ -64,4 +64,46 @@ body {
     color: #0f0;
     font-family: monospace;
     font-size: 1em;
+}
+
+#button-panel {
+  display: flex;
+  flex-wrap: wrap;       /* permite os botões quebrarem linha */
+  gap: 20px;             /* espaçamento entre os blocos de botão */
+  padding: 10px;
+}
+
+#button-panel > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centraliza o botão e a descrição */
+  width: 150px;          /* largura fixa para uniformizar */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+}
+
+#button-panel button {
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #019601;
+  color: white;
+  transition: background-color 0.3s ease;
+  width: 100%;  /* botão preenche a largura do container */
+}
+
+#button-panel button:hover {
+  background-color: #005a00;
+}
+
+#button-panel small {
+  margin-top: 8px;
+  color: #555;
+  font-style: italic;
+  text-align: center;
 }

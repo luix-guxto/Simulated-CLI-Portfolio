@@ -1,33 +1,13 @@
 import { lang } from "./main.js";
+import { buttons } from "../data/buttons_template.js"
 export function createButtons(){
     const container = document.getElementById('button-panel');
 
     container.innerHTML = '';
 
-    const buttons = [
-        {
-            label: lang === 'pt' ? 'Limpar' : 'Clear',
-            command: 'clear',
-            description: lang === 'pt'
-                ? 'Limpa a tela do terminal'
-                : 'Clears the terminal screen'
-        },
-        {
-            label: 'Idioma PT',
-            command: 'lang pt',
-            description: 'Altera o idioma para Português'
-        },
-        {
-            label:'Lang EN',
-            command: 'lang en',
-            description: 'Change language to English'
-        }
-    ];
-
     buttons.forEach(({label, command, description}) =>{
         const wrappler = document.createElement('div');
         wrappler.style.marginBottom = '10px';
-
 
         const notation = document.createElement('code');
         notation.id = 'button-notation';
@@ -35,7 +15,7 @@ export function createButtons(){
         notation.textContent = `> ${command}`;
 
         const btn = document.createElement('button');
-        btn.textContent = label;
+        btn.textContent = label[lang];
         btn.addEventListener('click', () => {
             const input = document.getElementById('input');
             input.value = command;
@@ -43,7 +23,7 @@ export function createButtons(){
         });
 
         const desc = document.createElement('small');
-        desc.textContent = description;
+        desc.textContent = description[lang];
         desc.style.display = 'block';
         desc.style.marginTop = '4px';
         desc.style.color = '#777';

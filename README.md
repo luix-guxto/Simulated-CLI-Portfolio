@@ -141,9 +141,7 @@ erDiagram
 ```bash
 cd frontend
 
-python -m http.server 8000
-# ou usando live-server 
-npx live-server
+py server.py
 ```
 
 ### Backend (Spring Boot)

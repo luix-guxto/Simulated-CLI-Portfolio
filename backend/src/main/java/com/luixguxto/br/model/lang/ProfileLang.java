@@ -83,7 +83,7 @@ public class ProfileLang {
                     "LinkedIn : " + linkedin + "\\n" +
                     "GitHub   : " + github + "\\n" +
                     "Currículo: " + urlCv + "\\n" +
-                    "===========================================\\n";
+                    "===========================================";
         } else {
             return "=== Profile ===============================\\n" +
                     "Name     : " + name + "\\n" +
@@ -95,7 +95,7 @@ public class ProfileLang {
                     "LinkedIn : " + linkedin + "\\n" +
                     "GitHub   : " + github + "\\n" +
                     "CV       : " + urlCv + "\\n" +
-                    "===========================================\\n";
+                    "===========================================";
         }
     }
 

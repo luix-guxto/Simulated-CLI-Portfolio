@@ -32,10 +32,12 @@ export function initTerminal() {
         try{
           setLanguage(args[0])
           let msg = lang == 'pt' ? "Linguagem alterada para Português" : "Language changed to English";
+          msg += '\n'
           appendOutput(msg)
           return
         } catch (err) {
           let msg = lang == 'pt' ? "Want to change to English? type `lang en`" : "Deseja alterar para Português? digite `lang pt`";
+          msg += '\n'
           appendOutput(msg)
           return
         }
@@ -44,10 +46,13 @@ export function initTerminal() {
       input.disabled = true; // trava input
       input.value = '';
       try {
-        const response = await sendCommandToApi(cmdLine);
-        appendOutput(response.message);
+        const response = await sendCommandToApi(cmd, args);
+        let msg = response.message
+        msg += '\n'
+        appendOutput(msg);
       } catch (err) {
         let msg = lang == 'pt' ? "[Erro]: não foi possível conectar ao servidor." : "[Error]: Could not connect to the server.";
+          msg += '\n'
         appendOutput(msg);
       }finally{
         input.disabled = false;

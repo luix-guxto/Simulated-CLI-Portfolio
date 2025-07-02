@@ -28,6 +28,12 @@ export function createButtons(){
         const wrappler = document.createElement('div');
         wrappler.style.marginBottom = '10px';
 
+
+        const notation = document.createElement('code');
+        notation.id = 'button-notation';
+        notation.className = 'bg-dark rounded'
+        notation.textContent = `> ${command}`;
+
         const btn = document.createElement('button');
         btn.textContent = label;
         btn.addEventListener('click', () => {
@@ -42,6 +48,7 @@ export function createButtons(){
         desc.style.marginTop = '4px';
         desc.style.color = '#777';
 
+        wrappler.appendChild(notation);
         wrappler.appendChild(btn);
         wrappler.appendChild(desc);
         container.appendChild(wrappler);

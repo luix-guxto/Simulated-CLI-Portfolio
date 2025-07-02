@@ -68,16 +68,16 @@ body {
 
 #button-panel {
   display: flex;
-  flex-wrap: wrap;       /* permite os botões quebrarem linha */
-  gap: 20px;             /* espaçamento entre os blocos de botão */
+  flex-wrap: wrap;       
+  gap: 20px;             
   padding: 10px;
 }
 
 #button-panel > div {
   display: flex;
   flex-direction: column;
-  align-items: center;   /* centraliza o botão e a descrição */
-  width: 150px;          /* largura fixa para uniformizar */
+  align-items: center;   
+  width: 150px;          
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -89,12 +89,13 @@ body {
   padding: 8px 12px;
   font-size: 1rem;
   cursor: pointer;
-  border: none;
+  border: 1px solid #032703;
   border-radius: 4px;
   background-color: #019601;
   color: white;
   transition: background-color 0.3s ease;
-  width: 100%;  /* botão preenche a largura do container */
+  width: 100%; 
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
 }
 
 #button-panel button:hover {
@@ -106,4 +107,17 @@ body {
   color: #555;
   font-style: italic;
   text-align: center;
+}
+
+#button-notation {
+  background-color: #000; 
+  color: #0f0;           
+  font-family: monospace;
+  font-size: 0.85rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #00ff00;
+  width: fit-content;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
 }

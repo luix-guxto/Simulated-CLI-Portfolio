@@ -11,7 +11,7 @@
   </style>
 </head>
 <body class="container py-4">
-  <h1 class="text-center">Simulated CLI Portfolio</h1>
+  <h1 class="text-center" id="page-title"></h1>
   <div id="terminal" class="bg-dark p-3 rounded mb-3">
     <div id="output" class="terminal-scroll">Bem-vindo ao portfólio CLI! Digite `help` para ver os comandos disponíveis.<br>Welcome to the CLI portfolio! Type `help` to see available commands.<br>The default language is PT, to change it to English type `lang en` in the terminal.</div>
     <div id="input-line" class="form-control bg-dark text-light border-0 mt-2">
@@ -19,10 +19,7 @@
       <input type="text" id="input" autofocus />
     </div>
   </div>
-  <p class="text-muted small mt-4 text-center">
-    Manual simplificado: clique nos botões abaixo para executar comandos automaticamente.<br>
-    Ou digite <code>help</code> no terminal para ver os principais comandos disponíveis.
-  </p>
+  <p id = 'manual-text' class="text-muted small mt-4 text-center"></p>
   <div id="button-panel" class="pt-3 mb-4 d-flex gap-2 flex-wrap">
   </div>
   <script type="module" src="./js/main.js"></script>

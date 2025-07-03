@@ -13,22 +13,22 @@ export const buttons = [
   {
     label: {
       pt: "Idioma PT",
-      en: "Lang PT"
+      en: "Idioma PT"
     },
     command: "lang pt",
     description: {
       pt: "Altera o idioma para Português",
-      en: "Change language to Portuguese"
+      en: "Altera o idioma para Português"
     }
   },
   {
     label: {
-      pt: "Idioma EN",
+      pt: "Lang EN",
       en: "Lang EN"
     },
     command: "lang en",
     description: {
-      pt: "Altera o idioma para Inglês",
+      pt: "Change language to English",
       en: "Change language to English"
     }
   },
@@ -41,6 +41,17 @@ export const buttons = [
     description: {
       pt: "Mostra o perfil profissional",
       en: "Displays the professional profile"
+    }
+  },
+  {
+    label: {
+      pt: "Formação",
+      en: "Education"
+    },
+    command: "academic",
+    description: {
+      pt: "Exibe a formação acadêmica. Sem parâmetros, lista todos os registros com seus IDs; com um ID, exibe os detalhes do item selecionado.<br>ex. <code>academic 1</code>",
+      en: "Displays academic background. Without parameters, lists all entries with their IDs; with an ID, shows the details of the selected item.<br>e.g.  <code>academic 1</code>"
     }
   }
 ];

@@ -23,7 +23,7 @@ export function createButtons(){
         });
 
         const desc = document.createElement('small');
-        desc.textContent = description[lang];
+        desc.innerHTML = description[lang];
         desc.style.display = 'block';
         desc.style.marginTop = '4px';
         desc.style.color = '#777';

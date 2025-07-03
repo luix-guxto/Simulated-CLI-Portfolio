@@ -12,7 +12,6 @@ export function setLanguage(newLang) {
   updateStaticTexts();
   console.log("Language has been changed to: "+newLang);
 }
-
 window.onload = () => {
   initTerminal();
   createButtons();

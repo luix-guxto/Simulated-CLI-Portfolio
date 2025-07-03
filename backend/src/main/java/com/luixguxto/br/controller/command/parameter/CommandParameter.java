@@ -1,8 +1,8 @@
-package com.luixguxto.br.controller;
+package com.luixguxto.br.controller.command.parameter;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class CommandRequest {
+public class CommandParameter {
 
     @NotBlank
     private String cmd;

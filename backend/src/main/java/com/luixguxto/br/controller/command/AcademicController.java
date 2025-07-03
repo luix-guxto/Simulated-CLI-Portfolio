@@ -1,4 +1,4 @@
-package com.luixguxto.br.controller.entity;
+package com.luixguxto.br.controller.command;
 
 import com.luixguxto.br.model.entity.Academic;
 import com.luixguxto.br.model.formatter.AcademicFormatter;

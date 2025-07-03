@@ -53,5 +53,16 @@ export const buttons = [
       pt: "Exibe a formação acadêmica. Sem parâmetros, lista todos os registros com seus IDs; com um ID, exibe os detalhes do item selecionado.<br>ex. <code>academic 1</code>",
       en: "Displays academic background. Without parameters, lists all entries with their IDs; with an ID, shows the details of the selected item.<br>e.g.  <code>academic 1</code>"
     }
+  },
+  {
+    label: {
+      pt: "Fluência",
+      en: "Fluency"
+    },
+    command: "fluency",
+    description: {
+      pt: "Exibe os níveis de fluência em diferentes idiomas. Sem parâmetros, lista todos os registros com seus IDs; com um ID, exibe os detalhes do item selecionado.<br>ex. <code>fluency 1</code>",
+      en: "Displays fluency levels in different languages. Without parameters, lists all entries with their IDs; with an ID, shows the details of the selected item.<br>e.g. <code>fluency 1</code>"
+    }
   }
 ];

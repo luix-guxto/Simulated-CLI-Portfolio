@@ -15,6 +15,7 @@ public class Academic {
 
     @Column(name = "course_pt")
     private String coursePt;
+
     @Column(name = "course_en")
     private String courseEn;
 

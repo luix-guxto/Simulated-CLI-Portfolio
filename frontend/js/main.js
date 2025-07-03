@@ -25,13 +25,13 @@ export function updateStaticTexts() {
   if (lang === 'pt') {
     title.textContent = 'Portfólio CLI Simulado';
     manual.innerHTML = `
-      Manual simplificado: clique nos botões abaixo para executar comandos automaticamente.<br>
+      <b>Manual simplificado:</b> clique nos botões abaixo para preencher o terminal com o comando correspondente. Pressione <b>Enter</b> para executá-lo.<br>
       Ou digite <code>help</code> no terminal para ver os principais comandos disponíveis.
     `;
   } else {
     title.textContent = 'Simulated CLI Portfolio';
     manual.innerHTML = `
-      Simplified manual: click the buttons below to auto-fill commands.<br>
+      <b>Simplified manual:</b> click the buttons below to fill the terminal with the corresponding command. Press <b>Enter</b> to execute it.<br>
       Or type <code>help</code> in the terminal to see the available commands.
     `;
   }

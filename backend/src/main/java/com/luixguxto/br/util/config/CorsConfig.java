@@ -1,4 +1,4 @@
-package com.luixguxto.br.config;
+package com.luixguxto.br.util.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ public class CorsConfig {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
-        System.out.println("Configurando CORS...");
+        //System.out.println("Configurando CORS...");
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {

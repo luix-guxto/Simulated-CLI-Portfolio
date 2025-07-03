@@ -1,8 +1,11 @@
 package com.luixguxto.br.controller;
 
-import com.luixguxto.br.controller.entity.AcademicController;
+import com.luixguxto.br.controller.command.AcademicController;
+import com.luixguxto.br.controller.command.LanguageController;
+import com.luixguxto.br.controller.command.parameter.CommandParameter;
 import com.luixguxto.br.model.lang.ProfileLang;
 import com.luixguxto.br.model.service.AcademicService;
+import com.luixguxto.br.model.service.LanguageService;
 import com.luixguxto.br.model.service.ProfileService;
 import com.luixguxto.br.util.Response;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,18 +25,21 @@ public class PortfolioController {
     @Autowired
     private AcademicService academicService;
 
+    @Autowired
+    private LanguageService languageService;
+
     @GetMapping()
     public ModelAndView home() {
         return new ModelAndView("redirect:/swagger-ui/index.html");
     }
 
     @PostMapping("/cli")
-    public String executeCommand(@Valid @RequestBody CommandRequest request){
+    public String executeCommand(@Valid @RequestBody CommandParameter request){
         try {
             return switch (request.getCmd()) {
                 case "profile" ->
                         Response.getResponse(new ProfileLang(profileService.getProfile(), request.getLang()).toString(), 200);
-                case "language-levels" -> Response.getResponse("teste", 200);
+                case "fluency" -> Response.getResponse(LanguageController.languageCommand(request.getArgs(), request.getLang(), languageService), 200);
                 case "academic" -> Response.getResponse(AcademicController.academicCommand(request.getArgs(), request.getLang(), academicService), 200);
                 default -> Response.getResponse("Unknown command: " + request.getCmd(), 404);
             };

@@ -147,4 +147,11 @@ create table profile(
 	cv_en_url VARCHAR(500) not null
 );
 
+create table link(
+	id INT auto_increment primary key,
+	name VARCHAR(100) not null,
+	url VARCHAR(500) not null
+);
+CREATE INDEX idx_link_name ON link(name);
+
 commit;

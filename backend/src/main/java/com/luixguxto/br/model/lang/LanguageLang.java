@@ -14,7 +14,7 @@ public class LanguageLang {
 
     public LanguageLang(Language l, String lang){
         this.id = l.getId();
-        this.name = lang.equals("pt") ? l.getNamePt() : l.getNameEn();
+        this.name = lang.equalsIgnoreCase("pt") ? l.getNamePt() : l.getNameEn();
         this.levelReading = l.getLevelReading();
         this.levelSpeaking = l.getLevelSpeaking();
         this.levelWriting = l.getLevelWriting();

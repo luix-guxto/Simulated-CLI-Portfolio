@@ -4,6 +4,7 @@ import com.luixguxto.br.model.entity.Academic;
 import com.luixguxto.br.util.enums.Status;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class AcademicLang {
     private Long id;
@@ -16,7 +17,7 @@ public class AcademicLang {
 
     public AcademicLang(Academic a, String lang){
         this.id = a.getId();
-        this.course = lang.equals("pt") ? a.getCoursePt() : a.getCourseEn();
+        this.course = lang.equalsIgnoreCase("pt") ? a.getCoursePt() : a.getCourseEn();
         this.organization = a.getOrganization();
         this.startDate = a.getStartDate();
         this.endDate = a.getEndDate();
@@ -82,13 +83,20 @@ public class AcademicLang {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = "pt".equalsIgnoreCase(lang) ? 
+            DateTimeFormatter.ofPattern("dd/MM/yyyy") : 
+            DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        
+        String startDateFormatted = startDate != null ? startDate.format(formatter) : "";
+        String endDateFormatted = endDate != null ? endDate.format(formatter) : "";
+        
         if ("pt".equalsIgnoreCase(lang)) {
             return "=== Formação Acadêmica ===========================\\n" +
                     "ID         : " + id + "\\n" +
                     "Curso      : " + course + "\\n" +
                     "Instituição: " + organization + "\\n" +
-                    "Início     : " + startDate + "\\n" +
-                    "Fim        : " + (endDate == null ? "Em andamento" : endDate) + "\\n" +
+                    "Início     : " + startDateFormatted + "\\n" +
+                    "Fim        : " + (endDate == null ? "Em andamento" : endDateFormatted) + "\\n" +
                     "Status     : " + getStatus() + "\\n" +
                     "==================================================";
         } else {
@@ -96,8 +104,8 @@ public class AcademicLang {
                     "ID          : " + id + "\\n" +
                     "Course      : " + course + "\\n" +
                     "Organization: " + organization + "\\n" +
-                    "Start Date  : " + startDate + "\\n" +
-                    "End Date    : " + (endDate == null ? "In progress" : endDate) + "\\n" +
+                    "Start Date  : " + startDateFormatted + "\\n" +
+                    "End Date    : " + (endDate == null ? "In progress" : endDateFormatted) + "\\n" +
                     "Status      : " + getStatus() + "\\n" +
                     "==================================================";
         }

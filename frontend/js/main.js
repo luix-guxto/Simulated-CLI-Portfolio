@@ -1,5 +1,19 @@
 import { initTerminal } from './cli.js';
 import { createButtons } from './buttons.js';
+import { initCategories, refreshCategories } from './categories.js';
+
+export const url = new URL(`http://${location.hostname}:5000`)
+export let availableCategories = [];
+
+async function loadCategoriesFromBackend() {
+    try {
+        const response = await fetch(url.toString() + 'categories');
+        const data = await response.json();
+        availableCategories = data.message;
+    } catch (error) {
+        console.error('Erro ao carregar categorias:', error);
+    }
+}
 
 export let lang = 'pt'
 export function setLanguage(newLang) {
@@ -10,12 +24,15 @@ export function setLanguage(newLang) {
   lang = newLanguage;
   createButtons();
   updateStaticTexts();
+  refreshCategories(lang);
   console.log("Language has been changed to: "+newLang);
 }
-window.onload = () => {
+window.onload = async () => {
+  await loadCategoriesFromBackend();
   initTerminal();
   createButtons();
   updateStaticTexts();
+  initCategories(lang);
 };
 
 export function updateStaticTexts() {

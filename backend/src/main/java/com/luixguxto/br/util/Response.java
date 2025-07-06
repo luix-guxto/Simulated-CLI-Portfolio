@@ -6,4 +6,8 @@ public class Response {
         message = message.replace("\"", "'");
         return "{ \"message\": \"" + message + "\", \"status\": " + status + " }";
     }
+
+    public static String getResponseData(String message, int status){
+        return "{ \"message\": " + message + ", \"status\": " + status + " }";
+    }
 }

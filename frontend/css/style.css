@@ -1,64 +1,152 @@
 body {
     margin: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 code {
-    font-family: monospace;
+    font-family: 'Courier New', monospace;
     font-style: normal;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2px 4px;
+    border-radius: 3px;
 }
 
 .terminal-scroll {
-    height: 300px;
+    height: 400px;
     overflow-y: auto;
     white-space: pre-wrap;
-    font-family: monospace;
+    font-family: 'Courier New', monospace;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 15px;
+    border: 2px solid #333;
 }
 
 .terminal-scroll::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 .terminal-scroll::-webkit-scrollbar-track {
     background: #2e2e2e;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb {
-    background-color: #6c757d;
-    border-radius: 4px;
+    background: linear-gradient(180deg, #019601, #005a00);
+    border-radius: 5px;
     border: 2px solid #2e2e2e;
 }
 
 .terminal-scroll::-webkit-scrollbar-thumb:hover {
-    background-color: #495057;
+    background: linear-gradient(180deg, #005a00, #003300);
 }
 
 .terminal-scroll {
     scrollbar-width: thin;
-    scrollbar-color: #6c757d #2e2e2e;
+    scrollbar-color: #019601 #2e2e2e;
 }
 
 #terminal {
-    padding: 20px;
-    font-family: monospace;
-    color: #0f0;
-    background-color: #000;
-    max-width: 1000px;
+    padding: 25px;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    background: linear-gradient(145deg, #000000, #1a1a1a);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 2px solid #333;
     margin: auto;
 }
 
 #output {
     white-space: pre-wrap;
-    min-height: 500px;
+    min-height: 400px;
+    line-height: 1.4;
+}
+
+/* Estilos para links no terminal */
+#output a {
+    color: #00ff00;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#output a:hover {
+    color: #ffff00;
+    text-decoration: none;
+    text-shadow: 0 0 8px #ffff00;
+}
+
+#output a:active {
+    color: #ff6600;
+}
+
+/* Estilo para links que começam com http/https */
+#output a[href^="http"] {
+    border-bottom: 1px dotted #00ff00;
+}
+
+#output a[href^="http"]:hover {
+    border-bottom: 1px solid #ffff00;
+}
+
+/* Estilo para links de email */
+#output a[href^="mailto"] {
+    border-bottom: 1px dotted #00aaff;
+}
+
+#output a[href^="mailto"]:hover {
+    border-bottom: 1px solid #00ffff;
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* Estilo específico para links clicáveis de IDs */
+#output a.cli-link {
+    color: #00ffff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+#output a.cli-link:hover {
+    color: #ffffff;
+    background-color: rgba(0, 255, 255, 0.2);
+    border-color: rgba(0, 255, 255, 0.6);
+    text-shadow: 0 0 10px #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+#output a.cli-link:active {
+    color: #ff6600;
+    background-color: rgba(255, 102, 0, 0.2);
+    border-color: rgba(255, 102, 0, 0.6);
+    transform: scale(0.95);
 }
 
 #input-line {
     display: flex;
     align-items: center;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 2px solid #333;
+    margin-top: 15px;
 }
 
 #prompt {
-    margin-right: 5px;
+    margin-right: 10px;
+    color: #00ff00;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 #input {
@@ -66,64 +154,302 @@ code {
     background: transparent;
     border: none;
     outline: none;
-    color: #0f0;
-    font-family: monospace;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
     font-size: 1em;
 }
 
 #button-panel {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    padding: 10px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-#button-panel>div {
+#button-panel > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #f9f9f9;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#button-panel > div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #019601, #005a00);
+}
+
+#button-panel > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-color: #019601;
 }
 
 #button-panel button {
-    padding: 8px 12px;
+    padding: 12px 20px;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    border: 1px solid #032703;
-    border-radius: 4px;
-    background-color: #019601;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #019601, #005a00);
     color: white;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     width: 100%;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(1, 150, 1, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 #button-panel button:hover {
-    background-color: #005a00;
+    background: linear-gradient(145deg, #005a00, #003300);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(1, 150, 1, 0.4);
 }
 
 #button-panel small {
-    margin-top: 8px;
-    color: #555;
+    margin-top: 12px;
+    color: #666;
     font-style: italic;
     text-align: center;
+    line-height: 1.4;
+    font-size: 0.9em;
 }
 
 #button-notation {
-    background-color: #000;
-    color: #0f0;
-    font-family: monospace;
-    font-size: 0.85rem;
+    background: linear-gradient(145deg, #000000, #1a1a1a);
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 2px solid #00ff00;
+    width: fit-content;
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+}
+
+#category-panel {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+#category-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+#category-title {
+    color: #333;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#command-dropdown, #category-dropdown {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 0.95em;
+    background: white;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+#command-dropdown:focus, #category-dropdown:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+#filter-btn {
+    padding: 12px 20px;
+    font-size: 0.95em;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #019601, #005a00);
+    color: white;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(1, 150, 1, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#filter-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #cccccc;
+    box-shadow: none;
+}
+
+#filter-btn:not(:disabled):hover {
+    background: linear-gradient(145deg, #005a00, #003300);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(1, 150, 1, 0.4);
+}
+
+/* Manual text styling */
+#manual-text {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #333 !important;
+    font-weight: 500;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+#manual-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+#manual-text b {
+    color: #019601;
+    font-weight: 700;
+}
+
+#manual-text code {
+    background: linear-gradient(145deg, #000000, #1a1a1a);
+    color: #00ff00;
     padding: 4px 8px;
     border-radius: 6px;
-    margin-bottom: 10px;
     border: 1px solid #00ff00;
-    width: fit-content;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #button-panel {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+    
+    #terminal {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .terminal-scroll {
+        height: 300px;
+    }
+    
+    #category-panel {
+        margin-top: 20px;
+    }
+    
+    #manual-text {
+        margin: 10px;
+        padding: 15px;
+        font-size: 0.9em;
+    }
+    
+    /* Correções específicas para mobile */
+    #input-line {
+        padding: 8px 12px;
+        margin-top: 10px;
+    }
+    
+    #input {
+        font-size: 16px; /* Evita zoom no iOS */
+        min-height: 44px; /* Tamanho mínimo para touch */
+        padding: 8px 0;
+    }
+    
+    #prompt {
+        font-size: 1em;
+        margin-right: 8px;
+    }
+    
+    /* Garantir que outros elementos não interfiram */
+    #command-dropdown, #category-dropdown {
+        z-index: 1;
+    }
+    
+    /* Estilos para o botão mobile */
+    #mobile-execute-btn {
+        min-height: 50px;
+        padding: 15px 30px;
+        font-size: 1.1em;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(145deg, #019601, #005a00);
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(1, 150, 1, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    #mobile-execute-btn:hover {
+        background: linear-gradient(145deg, #005a00, #003300);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(1, 150, 1, 0.4);
+    }
+    
+    #mobile-execute-btn:active {
+        transform: translateY(-1px);
+    }
+}
+
+/* Ajustes específicos para desktop */
+@media (min-width: 768px) {
+    .terminal-scroll {
+        height: 500px;
+    }
+    
+    #terminal {
+        min-height: 550px;
+    }
+    
+    #output {
+        min-height: 500px;
+    }
 }

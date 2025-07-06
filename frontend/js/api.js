@@ -1,10 +1,8 @@
-import { lang } from './main.js';
+import { lang, url } from './main.js';
 
 export async function sendCommandToApi(cmd, args) {
   try {
-    const url = new URL(`http://${location.hostname}:5000/cli`);
-
-    const response = await fetch(url.toString(), {
+    const response = await fetch(url.toString() + 'cli', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',

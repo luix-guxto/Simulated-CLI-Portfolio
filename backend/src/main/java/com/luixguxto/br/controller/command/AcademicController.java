@@ -8,8 +8,8 @@ import com.luixguxto.br.model.service.AcademicService;
 public class AcademicController {
 
     public static String academicCommand(String[] args, String lang, AcademicService service) throws Exception {
-        String errorMsgId = lang.equals("pt") ? "ID Inexistente" : "Non-existent ID";
-        String errorMsgFormat = lang.equals("pt") ? "O ID deve ser em formato numérico ex. academic 1" : "The ID must be in numeric format e.g. academic 1";
+        String errorMsgId = lang.equalsIgnoreCase("pt") ? "ID Inexistente" : "Non-existent ID";
+        String errorMsgFormat = lang.equalsIgnoreCase("pt") ? "O ID deve ser em formato numérico ex. academic 1" : "The ID must be in numeric format e.g. academic 1";
         if(args == null)
             return new AcademicFormatter(service.findAll(), lang).toString();
         else if (args.length == 0)

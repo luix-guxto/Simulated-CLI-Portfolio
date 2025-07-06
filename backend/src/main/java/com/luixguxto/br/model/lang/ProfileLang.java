@@ -19,14 +19,14 @@ public class ProfileLang {
 
     public ProfileLang(Profile p, String lang) {
         this.name = p.getName();
-        this.title = lang.equals("pt") ? p.getTitlePt() : p.getTitleEn();
-        this.bio = lang.equals("pt") ? p.getBioPt() : p.getBioEn();
+        this.title = lang.equalsIgnoreCase("pt") ? p.getTitlePt() : p.getTitleEn();
+        this.bio = lang.equalsIgnoreCase("pt") ? p.getBioPt() : p.getBioEn();
         this.email = p.getEmail();
         this.phone = p.getPhone();
         this.location = p.getLocation();
         this.linkedin = p.getLinkedin();
         this.github = p.getGithub();
-        this.urlCv = lang.equals("pt") ? p.getUrlCvPt() : p.getUrlCvEn();
+        this.urlCv = lang.equalsIgnoreCase("pt") ? p.getUrlCvPt() : p.getUrlCvEn();
         this.lang = lang;
     }
 
@@ -72,29 +72,42 @@ public class ProfileLang {
 
     @Override
     public String toString() {
+        String linkedinLink = linkedin != null && !linkedin.trim().isEmpty() ? 
+            "<a href=\"" + linkedin + "\" target=\"_blank\">" + linkedin + "</a>" : 
+            "N/A";
+        String githubLink = github != null && !github.trim().isEmpty() ? 
+            "<a href=\"" + github + "\" target=\"_blank\">" + github + "</a>" : 
+            "N/A";
+        String cvLink = urlCv != null && !urlCv.trim().isEmpty() ? 
+            "<a href=\"" + urlCv + "\" target=\"_blank\">" + urlCv + "</a>" : 
+            "N/A";
+        String emailLink = email != null && !email.trim().isEmpty() ? 
+            "<a href=\"mailto:" + email + "\">" + email + "</a>" : 
+            "N/A";
+            
         if ("pt".equalsIgnoreCase(lang)) {
             return "=== Perfil ================================\\n" +
                     "Nome     : " + name + "\\n" +
                     "Título   : " + title + "\\n" +
                     "Bio      : \\n  " + bio + "\\n" +
-                    "Email    : " + email + "\\n" +
+                    "Email    : " + emailLink + "\\n" +
                     "Telefone : " + phone + "\\n" +
                     "Local    : " + location + "\\n" +
-                    "LinkedIn : " + linkedin + "\\n" +
-                    "GitHub   : " + github + "\\n" +
-                    "Currículo: " + urlCv + "\\n" +
+                    "LinkedIn : " + linkedinLink + "\\n" +
+                    "GitHub   : " + githubLink + "\\n" +
+                    "Currículo: " + cvLink + "\\n" +
                     "===========================================";
         } else {
             return "=== Profile ===============================\\n" +
                     "Name     : " + name + "\\n" +
                     "Title    : " + title + "\\n" +
                     "Bio      : \\n  " + bio + "\\n" +
-                    "Email    : " + email + "\\n" +
+                    "Email    : " + emailLink + "\\n" +
                     "Phone    : " + phone + "\\n" +
                     "Location : " + location + "\\n" +
-                    "LinkedIn : " + linkedin + "\\n" +
-                    "GitHub   : " + github + "\\n" +
-                    "CV       : " + urlCv + "\\n" +
+                    "LinkedIn : " + linkedinLink + "\\n" +
+                    "GitHub   : " + githubLink + "\\n" +
+                    "CV       : " + cvLink + "\\n" +
                     "===========================================";
         }
     }

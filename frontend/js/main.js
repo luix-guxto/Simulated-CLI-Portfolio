@@ -1,6 +1,6 @@
 import { initTerminal } from './cli.js';
-import { createButtons } from './buttons.js';
 import { initCategories, refreshCategories } from './categories.js';
+import { setupManualPopup } from './popup_manual.js';
 
 export const url = new URL(`http://${location.hostname}:5000`)
 export let availableCategories = [];
@@ -22,7 +22,6 @@ export function setLanguage(newLang) {
     throw new Error('Language not exist, use en or pt');
   }
   lang = newLanguage;
-  createButtons();
   updateStaticTexts();
   refreshCategories(lang);
   console.log("Language has been changed to: "+newLang);
@@ -30,9 +29,9 @@ export function setLanguage(newLang) {
 window.onload = async () => {
   await loadCategoriesFromBackend();
   initTerminal();
-  createButtons();
   updateStaticTexts();
   initCategories(lang);
+  setupManualPopup();
 };
 
 export function updateStaticTexts() {
@@ -42,13 +41,13 @@ export function updateStaticTexts() {
   if (lang === 'pt') {
     title.textContent = 'Portfólio CLI Simulado';
     manual.innerHTML = `
-      <b>Manual simplificado:</b> clique nos botões abaixo para preencher o terminal com o comando correspondente. Pressione <b>Enter</b> para executá-lo.<br>
+      <b>Manual simplificado:</b> clique no botão <b>Manual Simplificado</b> abaixo do filtro de categorias para acessar uma lista rápida de comandos e suas descrições. Basta clicar em um comando para executá-lo imediatamente.<br>
       Ou digite <code>help</code> no terminal para ver os principais comandos disponíveis.
     `;
   } else {
     title.textContent = 'Simulated CLI Portfolio';
     manual.innerHTML = `
-      <b>Simplified manual:</b> click the buttons below to fill the terminal with the corresponding command. Press <b>Enter</b> to execute it.<br>
+      <b>Simplified manual:</b> click the <b>Simplified Manual</b> button below the category filter to access a quick list of commands and their descriptions. Just click a command to execute it immediately.<br>
       Or type <code>help</code> in the terminal to see the available commands.
     `;
   }

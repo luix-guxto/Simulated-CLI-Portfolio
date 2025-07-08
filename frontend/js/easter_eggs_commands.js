@@ -16,7 +16,7 @@ export function themeCommand(args) {
   const themes = {
     'default': { 
       name: lang === 'pt' ? 'Padrão' : 'Default', 
-      bodyBg: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      bodyBg: 'linear-gradient(135deg, #181c24 0%, #232b3a 100%), repeating-linear-gradient(0deg, rgba(0,255,0,0.04), rgba(0,255,0,0.04) 1px, transparent 1px, transparent 4px)',
       terminalBg: 'linear-gradient(145deg, #000000, #1a1a1a)',
       terminalColor: '#00ff00',
       terminalBorder: '#333',
@@ -295,6 +295,71 @@ function listThemes(themes) {
   return output;
 }
 
+function setMatrixEffect(visible) {
+  let matrixCanvas = document.getElementById('matrix-canvas');
+  if (visible) {
+    if (!matrixCanvas) {
+      matrixCanvas = document.createElement('canvas');
+      matrixCanvas.id = 'matrix-canvas';
+      matrixCanvas.style.position = 'fixed';
+      matrixCanvas.style.top = 0;
+      matrixCanvas.style.left = 0;
+      matrixCanvas.style.width = '100vw';
+      matrixCanvas.style.height = '100vh';
+      matrixCanvas.style.zIndex = -1;
+      matrixCanvas.style.pointerEvents = 'none';
+      matrixCanvas.style.opacity = '0.25';
+      document.body.appendChild(matrixCanvas);
+      startMatrixEffect(matrixCanvas, true); // true para forçar resize inicial
+    }
+  } else {
+    if (matrixCanvas) {
+      // Remover event listener de resize
+      window.removeEventListener('resize', window._matrixResizeHandler);
+      matrixCanvas.remove();
+      if (window._matrixInterval) {
+        clearInterval(window._matrixInterval);
+        window._matrixInterval = null;
+      }
+    }
+  }
+}
+
+function startMatrixEffect(canvas, forceInitialResize) {
+  var ctx = canvas.getContext('2d');
+  var texts = 'アァイィウヴエカキクケコサシスセソタチツテトABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+  var fontSize = 20;
+  var columns, drops;
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = [];
+    for (var x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+  }
+  // Handler global para poder remover depois
+  window._matrixResizeHandler = resize;
+  window.addEventListener('resize', resize);
+  if (forceInitialResize) resize();
+  if (window._matrixInterval) clearInterval(window._matrixInterval);
+  window._matrixInterval = setInterval(function draw() {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0F0';
+    ctx.font = fontSize + 'px monospace';
+    for (var i = 0; i < drops.length; i++) {
+      var text = texts[Math.floor(Math.random() * texts.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height || Math.random() > 0.95) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }, 33);
+}
+
 function applyTheme(theme) {
   // Aplicar ao body (background da página)
   document.body.style.background = theme.bodyBg;
@@ -393,6 +458,12 @@ function applyTheme(theme) {
   applyCustomStyles(theme);
   // Salvar no localStorage
   localStorage.setItem('cli-theme', JSON.stringify(theme));
+  // Matrix effect
+  if (theme.name === 'Matrix') {
+    setMatrixEffect(true);
+  } else {
+    setMatrixEffect(false);
+  }
 }
 
 function applyCustomStyles(theme) {

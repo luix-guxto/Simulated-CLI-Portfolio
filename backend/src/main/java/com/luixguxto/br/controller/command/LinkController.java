@@ -1,12 +1,11 @@
 package com.luixguxto.br.controller.command;
 
-import com.luixguxto.br.model.entity.Link;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.luixguxto.br.model.entity.Profile;
 import com.luixguxto.br.model.lang.ProfileLang;
 import com.luixguxto.br.model.service.LinkService;
 import com.luixguxto.br.model.service.ProfileService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class LinkController {
     
@@ -37,7 +36,6 @@ public class LinkController {
         response.put("type", "redirect");
         response.put("command", "certificates");
         
-        // Buscar link de certificados na tabela
         var certificatesLink = linkService.findByName("certificates");
         
         if (certificatesLink.isPresent()) {

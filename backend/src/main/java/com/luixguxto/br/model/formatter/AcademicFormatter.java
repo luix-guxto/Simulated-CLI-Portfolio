@@ -1,9 +1,9 @@
 package com.luixguxto.br.model.formatter;
 
+import java.util.List;
+
 import com.luixguxto.br.model.entity.Academic;
 import com.luixguxto.br.model.lang.AcademicLang;
-
-import java.util.List;
 
 public class AcademicFormatter {
 
@@ -19,7 +19,6 @@ public class AcademicFormatter {
     public String toString() {
         StringBuilder listOnString = new StringBuilder();
         
-        // Cabeçalho padrão
         if (lang.equalsIgnoreCase("pt")) {
             listOnString.append("=== Formação Acadêmica ===================\\n");
             listOnString.append("💡 Para ver detalhes de uma formação específica, digite: academic [id]\\n");
@@ -32,7 +31,6 @@ public class AcademicFormatter {
             listOnString.append("\\n");
         }
         
-        // Lista de formações acadêmicas com IDs clicáveis
         for(int i = 0; i < academicList.size(); i++){
             AcademicLang al = new AcademicLang(academicList.get(i), lang);
             if(i == academicList.size() - 1)
@@ -54,7 +52,6 @@ public class AcademicFormatter {
                         .append("\\n");
         }
         
-        // Rodapé padrão
         listOnString.append("\\n==================================================");
         
         return listOnString.toString();

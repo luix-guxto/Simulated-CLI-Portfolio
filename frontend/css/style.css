@@ -66,7 +66,6 @@ code {
     line-height: 1.4;
 }
 
-/* Estilos para links no terminal */
 #output a {
     color: #00ff00;
     text-decoration: underline;
@@ -85,7 +84,6 @@ code {
     color: #ff6600;
 }
 
-/* Estilo para links que começam com http/https */
 #output a[href^="http"] {
     border-bottom: 1px dotted #00ff00;
 }
@@ -94,7 +92,6 @@ code {
     border-bottom: 1px solid #ffff00;
 }
 
-/* Estilo para links de email */
 #output a[href^="mailto"] {
     border-bottom: 1px dotted #00aaff;
 }
@@ -105,7 +102,6 @@ code {
     text-shadow: 0 0 8px #00ffff;
 }
 
-/* Estilo específico para links clicáveis de IDs */
 #output a.cli-link {
     color: #00ffff;
     font-weight: bold;
@@ -320,7 +316,6 @@ code {
     box-shadow: 0 6px 20px rgba(1, 150, 1, 0.4);
 }
 
-/* Manual text styling */
 #manual-text {
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -363,7 +358,6 @@ code {
     box-shadow: 0 2px 8px rgba(0, 255, 0, 0.2);
 }
 
-/* === Manual Pop-up Minimalista (ajustes responsivos e visuais) === */
 #manual-popup {
   max-width: 420px;
   min-width: 260px;
@@ -466,7 +460,6 @@ code {
   }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     #button-panel {
         grid-template-columns: 1fr;
@@ -492,15 +485,14 @@ code {
         font-size: 0.9em;
     }
     
-    /* Correções específicas para mobile */
     #input-line {
         padding: 8px 12px;
         margin-top: 10px;
     }
     
     #input {
-        font-size: 16px; /* Evita zoom no iOS */
-        min-height: 44px; /* Tamanho mínimo para touch */
+        font-size: 16px; 
+        min-height: 44px; 
         padding: 8px 0;
     }
     
@@ -509,12 +501,10 @@ code {
         margin-right: 8px;
     }
     
-    /* Garantir que outros elementos não interfiram */
     #command-dropdown, #category-dropdown {
         z-index: 1;
     }
     
-    /* Estilos para o botão mobile */
     #mobile-execute-btn {
         min-height: 50px;
         padding: 15px 30px;
@@ -543,7 +533,6 @@ code {
     }
 }
 
-/* Ajustes específicos para desktop */
 @media (min-width: 768px) {
     .terminal-scroll {
         height: 500px;
@@ -558,7 +547,6 @@ code {
     }
 }
 
-/* Scrollbar customizada para o conteúdo do pop-up do manual */
 #manual-popup-content {
   overflow-y: auto;
   scrollbar-width: thin;

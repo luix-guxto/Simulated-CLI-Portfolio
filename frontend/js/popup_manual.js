@@ -7,17 +7,13 @@ function applyPopupTheme(theme) {
   const popup = document.getElementById('manual-popup');
   const content = document.getElementById('manual-popup-content');
   if (!popup) return;
-  // Fundo do pop-up
   popup.style.background = theme.buttonPanelBg || theme.terminalBg || '#fff';
   popup.style.color = theme.terminalColor || '#222';
   popup.style.borderColor = theme.buttonPanelBorder || '#01960122';
-  // Botão fechar
   const closeBtn = popup.querySelector('button[aria-label="Fechar"]');
   if (closeBtn) closeBtn.style.color = theme.labelColor || '#888';
-  // Título
   const title = popup.querySelector('h4');
   if (title) title.style.color = theme.titleColor || '#019601';
-  // Botões de comando
   if(content) {
     content.querySelectorAll('li button').forEach(btn => {
       btn.style.background = theme.buttonBg || 'linear-gradient(145deg, #019601, #005a00)';
@@ -32,7 +28,6 @@ function applyPopupTheme(theme) {
         btn.style.color = theme.buttonText || '#fff';
       };
     });
-    // Descrições: cor de fundo e texto conforme tema
     content.querySelectorAll('li span').forEach(span => {
       span.style.background = theme.inputBg || theme.buttonPanelBg || '#fff';
       span.style.color = theme.inputColor || theme.terminalColor || '#222';
@@ -50,14 +45,11 @@ function getCurrentTheme() {
 }
 
 function createPopup() {
-  // Evita múltiplos pop-ups
   if (document.getElementById('manual-popup')) return;
 
-  // Desabilitar scroll do body
   const prevOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
 
-  // Overlay
   const overlay = document.createElement('div');
   overlay.id = 'manual-popup-overlay';
   overlay.style.position = 'fixed';
@@ -72,7 +64,6 @@ function createPopup() {
   overlay.style.alignItems = 'center';
   overlay.style.justifyContent = 'center';
 
-  // Pop-up externo
   const popup = document.createElement('div');
   popup.id = 'manual-popup';
   popup.style.background = 'var(--popup-bg, #fff)';
@@ -91,7 +82,6 @@ function createPopup() {
   popup.style.flexDirection = 'column';
   popup.style.gap = '0';
 
-  // Botão fechar
   const closeBtn = document.createElement('button');
   closeBtn.innerHTML = '<i class="fas fa-times"></i>';
   closeBtn.style.position = 'absolute';
@@ -109,7 +99,6 @@ function createPopup() {
   });
   popup.appendChild(closeBtn);
 
-  // Div interna para conteúdo scrollável
   const content = document.createElement('div');
   content.id = 'manual-popup-content';
   content.style.overflowY = 'auto';
@@ -119,7 +108,6 @@ function createPopup() {
   content.style.flexDirection = 'column';
   content.style.gap = '8px';
 
-  // Título
   const title = document.createElement('h4');
   title.textContent = lang === 'pt' ? 'Comandos Rápidos' : 'Quick Commands';
   title.style.marginBottom = '10px';
@@ -128,7 +116,6 @@ function createPopup() {
   title.style.fontWeight = 'bold';
   content.appendChild(title);
 
-  // Lista de comandos
   const list = document.createElement('ul');
   list.style.listStyle = 'none';
   list.style.padding = 0;
@@ -144,7 +131,6 @@ function createPopup() {
     item.style.gap = '10px';
     item.style.marginBottom = '0';
 
-    // Botão de comando
     const cmdBtn = document.createElement('button');
     cmdBtn.textContent = label[lang];
     cmdBtn.style.background = 'linear-gradient(145deg, #019601, #005a00)';
@@ -171,11 +157,10 @@ function createPopup() {
       }
     });
 
-    // Descrição
     const desc = document.createElement('span');
     desc.innerHTML = description[lang].replace(/<br>/g, ' ')
-      .replace(/<code>.*?<\/code>/g, '') // Remove exemplos de código
-      .replace(/\s+/g, ' ') // Espaços extras
+      .replace(/<code>.*?<\/code>/g, '') 
+      .replace(/\s+/g, ' ') 
       .trim();
     desc.style.fontSize = '0.97em';
     desc.style.color = '#333';
@@ -197,14 +182,12 @@ function createPopup() {
   overlay.appendChild(popup);
   document.body.appendChild(overlay);
 
-  // Aplicar tema ao abrir
   const theme = getCurrentTheme();
   if (theme) {
     applyPopupTheme(theme);
     lastTheme = theme;
   }
 
-  // Responsividade extra para mobile
   function handleResize() {
     if (window.innerWidth < 600) {
       popup.style.maxWidth = '98vw';
@@ -222,7 +205,6 @@ function createPopup() {
   window.addEventListener('resize', handleResize);
 }
 
-// Atualiza o pop-up se o tema mudar
 function observeThemeChange() {
   setInterval(() => {
     const theme = getCurrentTheme();

@@ -1,9 +1,9 @@
 package com.luixguxto.br.model.formatter;
 
+import java.util.List;
+
 import com.luixguxto.br.model.entity.Project;
 import com.luixguxto.br.model.lang.ProjectLang;
-
-import java.util.List;
 
 public class ProjectFormatter {
 
@@ -19,7 +19,6 @@ public class ProjectFormatter {
     public String toString(){
         StringBuilder listOnString = new StringBuilder();
         
-        // Cabeçalho padrão
         if (lang.equalsIgnoreCase("pt")) {
             listOnString.append("=== Projetos Disponíveis ===================\\n");
             listOnString.append("💡 Para ver detalhes de um projeto específico, digite: project [id]\\n");
@@ -34,7 +33,6 @@ public class ProjectFormatter {
             listOnString.append("\\n");
         }
         
-        // Lista de projetos com IDs clicáveis
         for (int i = 0; i < projectList.size(); i++) {
             ProjectLang pj = new ProjectLang(projectList.get(i), lang);
             if(i == projectList.size() - 1)
@@ -62,7 +60,6 @@ public class ProjectFormatter {
                         .append("\\n");
         }
         
-        // Rodapé padrão
         listOnString.append("\\n==================================================");
         
         return listOnString.toString();

@@ -1,9 +1,9 @@
 package com.luixguxto.br.model.formatter;
 
+import java.util.List;
+
 import com.luixguxto.br.model.entity.WorkExperience;
 import com.luixguxto.br.model.lang.WorkExperienceLang;
-
-import java.util.List;
 
 public class WorkExperienceFormatter {
 
@@ -19,7 +19,6 @@ public class WorkExperienceFormatter {
     public String toString(){
         StringBuilder listOnString = new StringBuilder();
         
-        // Cabeçalho padrão
         if (lang.equalsIgnoreCase("pt")) {
             listOnString.append("=== Experiências Profissionais ===================\\n");
             listOnString.append("💡 Para ver detalhes de uma experiência específica, digite: work [id]\\n");
@@ -34,7 +33,6 @@ public class WorkExperienceFormatter {
             listOnString.append("\\n");
         }
         
-        // Lista de experiências profissionais com IDs clicáveis
         for (int i = 0; i < workExperienceList.size(); i++) {
             WorkExperienceLang work = new WorkExperienceLang(workExperienceList.get(i), lang);
             if(i == workExperienceList.size() - 1)
@@ -62,7 +60,6 @@ public class WorkExperienceFormatter {
                         .append("\\n");
         }
         
-        // Rodapé padrão
         listOnString.append("\\n==================================================");
         
         return listOnString.toString();

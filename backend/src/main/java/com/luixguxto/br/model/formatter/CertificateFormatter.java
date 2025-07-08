@@ -1,9 +1,9 @@
 package com.luixguxto.br.model.formatter;
 
+import java.util.List;
+
 import com.luixguxto.br.model.entity.Certificate;
 import com.luixguxto.br.model.lang.CertificateLang;
-
-import java.util.List;
 
 public class CertificateFormatter {
 
@@ -19,7 +19,6 @@ public class CertificateFormatter {
     public String toString(){
         StringBuilder listOnString = new StringBuilder();
         
-        // Cabeçalho padrão
         if (lang.equalsIgnoreCase("pt")) {
             listOnString.append("=== Certificados Disponíveis ===================\\n");
             listOnString.append("💡 Para ver detalhes de um certificado específico, digite: certificate [id]\\n");
@@ -34,7 +33,6 @@ public class CertificateFormatter {
             listOnString.append("\\n");
         }
         
-        // Lista de certificados com IDs clicáveis
         for (int i = 0; i < certificateList.size(); i++) {
             CertificateLang cert = new CertificateLang(certificateList.get(i), lang);
             if(i == certificateList.size() - 1)
@@ -62,7 +60,6 @@ public class CertificateFormatter {
                         .append("\\n");
         }
         
-        // Rodapé padrão
         listOnString.append("\\n==================================================");
         
         return listOnString.toString();

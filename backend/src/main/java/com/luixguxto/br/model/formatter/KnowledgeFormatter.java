@@ -1,9 +1,9 @@
 package com.luixguxto.br.model.formatter;
 
+import java.util.List;
+
 import com.luixguxto.br.model.entity.Knowledge;
 import com.luixguxto.br.model.lang.KnowledgeLang;
-
-import java.util.List;
 
 public class KnowledgeFormatter {
 
@@ -19,7 +19,6 @@ public class KnowledgeFormatter {
     public String toString(){
         StringBuilder listOnString = new StringBuilder();
         
-        // Cabeçalho padrão
         if (lang.equalsIgnoreCase("pt")) {
             listOnString.append("=== Conhecimentos Disponíveis ===================\\n");
             listOnString.append("💡 Para ver detalhes de um conhecimento específico, digite: knowledge [id]\\n");
@@ -34,7 +33,6 @@ public class KnowledgeFormatter {
             listOnString.append("\\n");
         }
         
-        // Lista de conhecimentos com IDs clicáveis
         for (int i = 0; i < knowledgeList.size(); i++) {
             KnowledgeLang know = new KnowledgeLang(knowledgeList.get(i), lang);
             if(i == knowledgeList.size() - 1)
@@ -62,7 +60,6 @@ public class KnowledgeFormatter {
                         .append("\\n");
         }
         
-        // Rodapé padrão
         listOnString.append("\\n==================================================");
         
         return listOnString.toString();

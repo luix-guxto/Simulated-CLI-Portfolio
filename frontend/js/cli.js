@@ -9,18 +9,11 @@ export function initTerminal() {
   const input = document.getElementById('input');
   const output = document.getElementById('output');
   const mobileExecuteBtn = document.getElementById('mobile-execute-btn');
-
-  // Carregar tema salvo
   loadSavedTheme();
-
   input.focus();
-
-  // Configurar event delegation para links clicáveis
   setupEventDelegation();
 
-  // Expor executeCommand globalmente para os links HTML
   window.executeCommand = async (cmdLine) => {
-    console.log('executeCommand chamado com:', cmdLine); // Debug
     if (!cmdLine) return;
     
     if(!firstCommandExecuted){
@@ -99,41 +92,29 @@ export function initTerminal() {
     try {
       const response = await sendCommandToApi(cmd, args);
       
-      // Verificar se é comando get e processar JSON
       if (cmd === 'get') {
         try {
-          console.log('Resposta do comando get:', response);
           
-          // O response.message já é um objeto JSON (não uma string)
           const getData = response.message;
-          console.log('Dados do comando get:', getData);
           
           if (getData.type === 'redirect' && getData.url) {
-            // Exibir mensagem
             appendOutput(getData.message + '\n');
-            
-            // Abrir o link em nova aba
+          
             window.open(getData.url, '_blank');
             return;
           } else if (getData.type === 'help') {
-            // Exibir ajuda
             appendOutput(getData.message + '\n');
             return;
           } else {
-            // Caso inesperado, exibir mensagem de erro
             appendOutput('❌ Erro: Tipo de resposta inesperado do comando get\n');
             return;
           }
         } catch (parseError) {
-          // Se não conseguir fazer parse, exibir erro
-          console.error('Erro ao processar dados do comando get:', parseError);
-          console.error('Resposta recebida:', response);
           appendOutput('❌ Erro: Não foi possível processar a resposta do comando get\n');
           return;
         }
       }
       
-      // Para outros comandos, exibir normalmente
       let msg = response.message;
       msg += '\n';
       appendOutput(msg);
@@ -162,7 +143,6 @@ export function initTerminal() {
   });
 
   function appendOutput(text) {
-    // Sempre usar innerHTML para processar links HTML
     output.innerHTML += text + '<br>';
     output.scrollTop = output.scrollHeight;
   }
@@ -189,32 +169,22 @@ export function initTerminal() {
   });
 }
 
-// Event delegation para links clicáveis - funciona sempre
 function setupEventDelegation() {
-  console.log('Configurando event delegation...');
   
-  // Remover listener anterior se existir
   document.removeEventListener('click', handleLinkClick);
   
-  // Adicionar novo listener
   document.addEventListener('click', handleLinkClick);
   
-  console.log('Event delegation configurado com sucesso');
 }
 
 function handleLinkClick(e) {
-  console.log('Click detectado em:', e.target);
   
   if (e.target && e.target.classList.contains('cli-link')) {
-    console.log('Link cli-link clicado!');
     e.preventDefault();
     const cmdLine = e.target.getAttribute('data-command');
-    console.log('Comando encontrado:', cmdLine);
     
     if (cmdLine) {
-      console.log('Link clicado via event delegation:', cmdLine);
       if (window.executeCommand) {
-        console.log('Executando comando:', cmdLine);
         window.executeCommand(cmdLine);
       } else {
         console.error('executeCommand não encontrado!');
@@ -225,12 +195,10 @@ function handleLinkClick(e) {
   }
 }
 
-// Configurar event delegation quando o DOM estiver pronto
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', setupEventDelegation);
 } else {
   setupEventDelegation();
 }
 
-// Também configurar quando a página carregar completamente
 window.addEventListener('load', setupEventDelegation);

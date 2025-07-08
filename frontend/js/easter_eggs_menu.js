@@ -1,4 +1,3 @@
-// Menu de Easter Eggs - Lista todos os comandos secretos disponíveis
 export const easterEggsMenu = [
   {
     cmd: 'cat',

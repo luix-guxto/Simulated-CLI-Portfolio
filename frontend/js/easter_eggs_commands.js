@@ -1,7 +1,5 @@
-// Comandos Easter Eggs individuais
 import { lang } from './main.js';
 
-// Comando cat - Gatinho ASCII
 export function catCommand() {
   const catArt =
     ' /\\_/\\\n' +
@@ -11,7 +9,6 @@ export function catCommand() {
   return catArt + '\n' + msg;
 }
 
-// Comando theme - Mudar tema do terminal
 export function themeCommand(args) {
   const themes = {
     'default': { 
@@ -262,7 +259,6 @@ export function themeCommand(args) {
   };
   
   if (!args || args.length === 0) {
-    // Mostrar lista de temas
     return listThemes(themes);
   }
   
@@ -310,11 +306,10 @@ function setMatrixEffect(visible) {
       matrixCanvas.style.pointerEvents = 'none';
       matrixCanvas.style.opacity = '0.25';
       document.body.appendChild(matrixCanvas);
-      startMatrixEffect(matrixCanvas, true); // true para forçar resize inicial
+      startMatrixEffect(matrixCanvas, true); 
     }
   } else {
     if (matrixCanvas) {
-      // Remover event listener de resize
       window.removeEventListener('resize', window._matrixResizeHandler);
       matrixCanvas.remove();
       if (window._matrixInterval) {
@@ -339,7 +334,6 @@ function startMatrixEffect(canvas, forceInitialResize) {
       drops[x] = 1;
     }
   }
-  // Handler global para poder remover depois
   window._matrixResizeHandler = resize;
   window.addEventListener('resize', resize);
   if (forceInitialResize) resize();
@@ -361,32 +355,26 @@ function startMatrixEffect(canvas, forceInitialResize) {
 }
 
 function applyTheme(theme) {
-  // Aplicar ao body (background da página)
   document.body.style.background = theme.bodyBg;
   
-  // Título principal
   const pageTitle = document.getElementById('page-title');
   if (pageTitle) {
     pageTitle.style.color = theme.titleColor;
   }
-  // Subtítulo
   const subtitle = document.querySelector('.text-white-50, .subtitle, .text-muted');
   if (subtitle) {
     subtitle.style.color = theme.subtitleColor;
   }
-  // Labels
   const labels = document.querySelectorAll('.form-label, #category-title');
   labels.forEach(label => {
     label.style.color = theme.labelColor;
   });
-  // Botões
   const buttons = document.querySelectorAll('button, .btn');
   buttons.forEach(btn => {
     btn.style.background = theme.buttonBg;
     btn.style.color = theme.buttonText;
     btn.style.borderColor = theme.buttonBorder;
   });
-  // Botão hover
   buttons.forEach(btn => {
     btn.onmouseenter = () => {
       btn.style.background = theme.buttonHoverBg;
@@ -397,30 +385,25 @@ function applyTheme(theme) {
       btn.style.color = theme.buttonText;
     };
   });
-  // Texto do manual
   const manualText = document.getElementById('manual-text');
   if (manualText) {
     manualText.style.color = theme.manualTextColor;
   }
-  // Terminal principal
   const terminal = document.getElementById('terminal');
   if (terminal) {
     terminal.style.background = theme.terminalBg;
     terminal.style.borderColor = theme.terminalBorder;
   }
-  // Output do terminal
   const output = document.getElementById('output');
   if (output) {
     output.style.color = theme.terminalColor;
   }
-  // Input do terminal
   const input = document.getElementById('input');
   if (input) {
-    input.style.backgroundColor = 'transparent'; // Sempre transparente
+    input.style.backgroundColor = 'transparent';
     input.style.color = theme.inputColor;
     input.style.borderColor = 'none';
   }
-  // Input line (container do input)
   const inputLine = document.getElementById('input-line');
   if (inputLine) {
     inputLine.classList.remove('bg-dark', 'text-light', 'border-0');
@@ -428,18 +411,15 @@ function applyTheme(theme) {
     inputLine.style.borderColor = theme.inputBorder;
     inputLine.style.color = theme.inputColor;
   }
-  // Prompt
   const prompt = document.getElementById('prompt');
   if (prompt) {
     prompt.style.color = theme.terminalColor;
   }
-  // Terminal scroll (container do output)
   const terminalScroll = document.querySelector('.terminal-scroll');
   if (terminalScroll) {
     terminalScroll.style.backgroundColor = theme.inputBg;
     terminalScroll.style.borderColor = theme.terminalBorder;
   }
-  // Button panel
   const buttonPanel = document.getElementById('button-panel');
   if (buttonPanel) {
     const panelButtons = buttonPanel.querySelectorAll('div');
@@ -448,17 +428,13 @@ function applyTheme(theme) {
       button.style.borderColor = theme.buttonPanelBorder;
     });
   }
-  // Category panel
   const categoryPanel = document.getElementById('category-panel');
   if (categoryPanel) {
     categoryPanel.style.backgroundColor = theme.categoryPanelBg;
     categoryPanel.style.borderColor = theme.categoryPanelBorder;
   }
-  // Aplicar estilos CSS customizados para scrollbar e links
   applyCustomStyles(theme);
-  // Salvar no localStorage
   localStorage.setItem('cli-theme', JSON.stringify(theme));
-  // Matrix effect
   if (theme.name === 'Matrix') {
     setMatrixEffect(true);
   } else {
@@ -467,7 +443,6 @@ function applyTheme(theme) {
 }
 
 function applyCustomStyles(theme) {
-  // Criar ou atualizar style tag para estilos customizados
   let styleTag = document.getElementById('theme-styles');
   if (!styleTag) {
     styleTag = document.createElement('style');
@@ -515,14 +490,11 @@ function applyCustomStyles(theme) {
   
   styleTag.textContent = css;
 }
-
-// Função para carregar tema salvo
 export function loadSavedTheme() {
   const savedTheme = localStorage.getItem('cli-theme');
   if (savedTheme) {
     try {
       const theme = JSON.parse(savedTheme);
-      // Aguardar um pouco para garantir que o DOM está carregado
       setTimeout(() => {
         applyTheme(theme);
       }, 100);
